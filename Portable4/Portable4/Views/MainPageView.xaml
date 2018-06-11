@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Portable4.Views.MainPageView"
+            xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:Portable4.ViewModels;assembly=Portable4" 
+            xmlns:controls="clr-namespace:Portable4.Controls;assembly=Portable4"
+            xmlns:viewModels="clr-namespace:Portable4.ViewModels;assembly=Portable4">
+
+
+
+    <!-- ItemsSource="{Binding ContentPages}"> -->
+
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+
+    <!-- 全体 -->
+    <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <Button x:Name="Add" Text="Add." BackgroundColor="Lime" Command="{Binding SelectCommand }" CommandParameter="true"/>
+
+            <Button x:Name="Rankig" Text="Rankig" Command="{Binding SelectCommand }" CommandParameter="false"/>
+
+            <Button x:Name="Stock" Text="Stock" Command="{Binding SelectCommand }" CommandParameter="true"/>
+
+            <Button x:Name="Reload" Text="ReLoad" BorderColor="Lime" Command="{Binding SelectCommand }" CommandParameter="false"/>
+
+        </StackLayout>
+
+
+
+        <ListView x:Name="Listview" ItemsSource="{Binding ListItem}" ItemSelected="OnItemSelected" ItemTapped="OnItemTapped" BackgroundColor="#0B3950" HorizontalOptions="FillAndExpand" 
+                                    SeparatorVisibility="None" SeparatorColor="Yellow" HasUnevenRows="false" >
+            <ListView.ItemTemplate>
+                <controls:ContentPageDataTemplateSelector>
+
+                    <controls:ContentPageDataTemplateSelector.ContentPage1>
+                        <DataTemplate>
+                            <ViewCell>
+
+                                <Label Text="{Binding Title}" TextColor="Red" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:ContentPageDataTemplateSelector.ContentPage1>
+
+                    <controls:ContentPageDataTemplateSelector.ContentPage2>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor="Fuchsia">
+                                    <Frame OutlineColor="White">
+                                        <Label Text="{Binding Title}" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:ContentPageDataTemplateSelector.ContentPage2>
+
+                </controls:ContentPageDataTemplateSelector>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+</ContentPage>

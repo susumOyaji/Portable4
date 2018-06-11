@@ -1,3 +1,4 @@
+using Portable4.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,7 +12,7 @@ namespace Portable4
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+			MainPage = new MainPageView();
 		}
 
 		protected override void OnStart ()
